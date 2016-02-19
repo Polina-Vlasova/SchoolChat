@@ -27,12 +27,10 @@ class GetMes extends AsyncTask {
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
-        if(text != null) {
+        if (text != null) {
             MainActivity.mes.add(text);
             MainActivity.add(text);
         }
         new GetMes().execute();
     }
-
-
 }

@@ -1,8 +1,14 @@
 package vlasova.school.by.schoolchat;
 
+import android.text.Editable;
+import android.util.Log;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 class ClientThread implements Runnable {
@@ -29,10 +35,26 @@ class ClientThread implements Runnable {
             }
             socket.close();
         } catch (Exception e) {
-            e.getStackTrace();
         }
+        MainActivity.isRun.setText("Offline");
     }
 
+    public void sendMessage() {
+        try {
+            final PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            if (!MainActivity.sendMessage.getText().equals("")) {
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        out.println(MainActivity.sendMessage.getText());
+                    }
+                });
+                thread.start();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public String getString() throws IOException {
         if (reader.ready())
