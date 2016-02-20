@@ -104,8 +104,6 @@ public class MainActivity extends Activity {
             textView.setBackgroundResource(R.drawable.my_mes);
             Log.d("wtf", 1 + "/");
         }
-        Log.d("wtf", textView.getText().toString());
-        Log.d("wtf", id);
         ll.addView(textView);
         sv.fullScroll(ScrollView.FOCUS_DOWN);
     }

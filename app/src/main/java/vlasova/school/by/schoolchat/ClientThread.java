@@ -27,7 +27,7 @@ class ClientThread implements Runnable {
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             while (finish) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
